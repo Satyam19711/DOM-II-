@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIN & MAX LEADERBOARD (DOM)</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            text-align: center;
+        }
+
+        .main {
+            width: 50%;
+            margin: auto;
+            margin-top: 30px;
+        }
+
+        #minMax {
+            margin: auto;
+            width: 46%;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: -20px;
+            /* position: fixed; */
+        }
+       #min+p, #max+p{
+        text-align: center;
+       }
+
+        #min {
+            width: 80px;
+            height: 50px;
+            border: 1px solid black;
+            background-color: red;
+        }
+
+        #max {
+            /* width: 50px; */
+            width: 80px;
+            height: 50px;
+            border: 1px solid black;
+            background-color: green;
+        }
+
+        #screen {
+            width: 25%;
+            height: 10vh;
+            border: 1px solid black;
+            background-color: grey;
+            margin: auto;
+            margin-top: 30px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #minMax+p{
+            margin-top: 20px;
+            font-size: 1.4em;
+            text-align: center;
+            margin-bottom: -11px;
+        }
+
+
+        .grid {
+            /* border: 2px solid green; */
+            width: 35%;
+            height: 40vh;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: auto;
+
+
+        }
+
+        .shell {
+            border: 2px solid black;
+            height: 10vh;
+            width: 9.6vh;
+            margin: auto;
+            line-height: 10vh;
+            background-color: #FF6600;
+        }
+        .grid + .shell {
+            margin-top: 5px;
+            background-color: #850067;
+            color: white;
+        }
+        #etr {
+            display: flex;
+            margin: auto;
+            margin-top: 50px;
+            height: 10vh;
+            width: 30%;
+            background-color: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+        }
+         #etr>button{
+            color: white;
+        }
+        .green{
+            background-color: #627F00;
+        }
+        .zero{
+            grid-column-start: 2;
+            grid-column-end:3 ;
+        }
+        #min,#max{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        button{
+            border: none;
+            background: none;
+            font-size: 23px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div id="minMax">
+            <div>
+                <div id="min"><h2>43</h2></div>
+                <p>MIN</p>
+            </div>
+            <div>
+                <div id="max"><h2>2019</h2></div>
+                <p>MAX</p>
+            </div>
+
+        </div>
+        <p>SCORE</p>
+        <div id="screen">
+            <h1 id="head"></h1>
+        </div>
+        <div class="grid">
+            <div class="shell green"><button>1</button></div>
+            <div class="shell"><button>2</button></div>
+            <div class="shell green"><button>3</button></div>
+            <div class="shell"><button>4</button></div>
+            <div class="shell"><button>5</button></div>
+            <div class="shell"><button>6</button></div>
+            <div class="shell green"><button>7</button></div>
+            <div class="shell"><button>8</button></div>
+            <div class="shell green"><button>9</button></div>
+            <div class="shell zero"><button>0</button></div>
+        </div>
+        <div  id="etr"><Button>ENTER</Button></div>
+    </div>
+</body>
+
+<script>
+
+    let min = document.querySelector("#min")
+    // console.log(min.innerText)
+    let max = document.querySelector("#max")
+    let display = document.querySelectorAll("#head")
+    let enter = document.getElementById("etr")
+    // console.log(display)
+    let keypad = document.querySelectorAll(".shell>button")
+
+    let flag = true
+    let dis1 = ""
+
+    // keypad and display >>>>>>>>>>>>>>>>>>
+
+    for(let i = 0; i<keypad.length; i++){
+        keypad[i].addEventListener('click',function(){
+            if (flag){
+                dis1 += keypad[i].innerText
+                display[0].innerText = dis1
+            }
+            // else{
+
+            // }
+        })
+    }
+
+    enter.addEventListener('click',function(){
+        
+        if(dis1){ 
+            if(dis1<Number(min.innerText)){
+                min.innerText = dis1
+                let flag = true
+                dis1 = ""
+        }
+
+        }
+
+        if(dis1>Number(max.innerText)){
+            max.innerText = dis1
+            let flag = true
+            dis1 = ""
+        }
+        
+    })
+
+</script>
+
+</html>
+
+
+
+
